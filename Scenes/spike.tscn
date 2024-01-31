@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://cun0had8d8yw"]
+
+[ext_resource type="Script" path="res://Scenes/spike.gd" id="1_3npw6"]
+[ext_resource type="Shader" path="res://Art/shaders/spike.gdshader" id="2_ekit6"]
+[ext_resource type="Texture2D" uid="uid://7jtnhovfff4p" path="res://Art/sprites/spike.png" id="2_h35x7"]
+[ext_resource type="Texture2D" uid="uid://cpbubqas2xq5v" path="res://Art/sprites/Beam.png" id="3_l4lwa"]
+[ext_resource type="Texture2D" uid="uid://cc8upshk3nah6" path="res://Art/light.png" id="4_1goio"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tj1xa"]
+size = Vector2(256, 256)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6do6y"]
+shader = ExtResource("2_ekit6")
+shader_parameter/beams = 2
+shader_parameter/energy = 8.545
+shader_parameter/roughness = 3
+shader_parameter/frequency = 5
+shader_parameter/speed = 1.0
+shader_parameter/thickness = 0.005
+shader_parameter/outline_thickness = 0.032
+shader_parameter/beam_difference = 0.0
+shader_parameter/glow = 0.0
+shader_parameter/outline_glow = 0.149
+shader_parameter/color = Color(1, 0.972549, 0.964706, 1)
+shader_parameter/outline_color = Color(1, 0.254902, 0.341176, 1)
+shader_parameter/progress = 1.0
+shader_parameter/y_offset = 0.0
+shader_parameter/fixed_edge_size = 0.05
+shader_parameter/noise_scale = Vector2(1, 1)
+
+[node name="Spike" type="Area2D"]
+script = ExtResource("1_3npw6")
+
+[node name="Oig1-pixelicious(1)" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-8, -24)
+rotation = -3.14159
+scale = Vector2(4.05338, 4.05338)
+texture = ExtResource("2_h35x7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tj1xa")
+
+[node name="Beam" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_6do6y")
+position = Vector2(-1.90735e-06, 6.19888e-06)
+scale = Vector2(1.36781, 23.8632)
+texture = ExtResource("3_l4lwa")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-8, 112)
+scale = Vector2(-4.15098, -4.15098)
+color = Color(1, 0.384314, 0.258824, 1)
+texture = ExtResource("4_1goio")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

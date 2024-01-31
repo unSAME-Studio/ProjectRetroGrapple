@@ -1,0 +1,226 @@
+[gd_scene load_steps=19 format=3 uid="uid://bms0fxkd0dgrd"]
+
+[ext_resource type="Script" path="res://Scenes/coin.gd" id="1_midk6"]
+[ext_resource type="Shader" path="res://Scenes/water.gdshader" id="2_ciqno"]
+[ext_resource type="Shader" path="res://Art/shaders/MaskParticle2.gdshader" id="2_dki66"]
+[ext_resource type="Texture2D" uid="uid://mt3exixu7cpj" path="res://Art/white.png" id="3_d7kkf"]
+[ext_resource type="Texture2D" uid="uid://bb5lsq7n7oxai" path="res://Art/sprites/coins.png" id="3_m85sf"]
+[ext_resource type="Texture2D" uid="uid://2vs6fc0di5p0" path="res://Art/effect_1.png" id="3_ttl05"]
+[ext_resource type="Texture2D" uid="uid://cc8upshk3nah6" path="res://Art/light.png" id="4_6886c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t1s3b"]
+radius = 29.0172
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yordk"]
+shader = ExtResource("2_dki66")
+shader_parameter/alpha = 1.0
+shader_parameter/mask_texture2 = ExtResource("3_ttl05")
+
+[sub_resource type="Curve" id="Curve_dmag7"]
+_data = [Vector2(0, 0), 0.0, 3.88556, 0, 0, Vector2(1, 0), -1.37883, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_764n1"]
+curve = SubResource("Curve_dmag7")
+
+[sub_resource type="Curve" id="Curve_tx2lb"]
+_data = [Vector2(0.00314465, 0.553125), 0.0, 3.66031, 0, 0, Vector2(0.286164, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.60437, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ebbx6"]
+curve = SubResource("Curve_tx2lb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_564w7"]
+lifetime_randomness = 0.83
+particle_flag_disable_z = true
+angle_min = -316.3
+angle_max = 316.3
+angular_velocity_min = -133.18
+angular_velocity_max = 141.5
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_ebbx6")
+alpha_curve = SubResource("CurveTexture_764n1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xnygl"]
+shader = ExtResource("2_ciqno")
+shader_parameter/fV = 0.395
+
+[sub_resource type="Animation" id="Animation_digj7"]
+resource_name = "Idle"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 1.6, 1.8, 2.2, 3, 4.5, 4.6, 4.8, 5.2, 6),
+"transitions": PackedFloat32Array(2, 0.5, -2, -2, -2, 2, 0.5, -2, -2, -2, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.966863, 0.966863), Vector2(1.40857, 1.40857), Vector2(1.06895, 1.06895), Vector2(1.23041, 1.23041), Vector2(1, 1), Vector2(0.966863, 0.966863), Vector2(1.40857, 1.40857), Vector2(1.06895, 1.06895), Vector2(1.23041, 1.23041), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(-2, -2, 1),
+"update": 0,
+"values": [-0.523598, 0.523598, -0.523598]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite/Circle:material:shader_parameter/fV")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 3, 4.5, 6),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, 1),
+"update": 0,
+"values": [0.3, 0.655, 0.3, 0.655, 0.3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite/Sprite2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3.4, 6),
+"transitions": PackedFloat32Array(-2, -2, 1),
+"update": 0,
+"values": [0.0, -0.523598, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite/Sprite2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(-2, -2, 1),
+"update": 0,
+"values": [Vector2(0.366026, 1.36602), Vector2(2.98023e-08, 5.96046e-08), Vector2(0.366026, 1.36602)]
+}
+
+[sub_resource type="Animation" id="Animation_jgjtp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite/Circle:material:shader_parameter/fV")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.395]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite/Sprite2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite/Sprite2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1.03427)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_emqrd"]
+_data = {
+"Idle": SubResource("Animation_digj7"),
+"RESET": SubResource("Animation_jgjtp")
+}
+
+[node name="Coin" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_midk6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t1s3b")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_yordk")
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_564w7")
+texture = ExtResource("3_d7kkf")
+lifetime = 5.0
+explosiveness = 0.19
+randomness = 0.76
+
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="Circle" type="Sprite2D" parent="Sprite"]
+modulate = Color(0.968627, 0.768627, 0, 1)
+material = SubResource("ShaderMaterial_xnygl")
+position = Vector2(59.9878, 59.9878)
+scale = Vector2(1.2388, 1.2388)
+texture = ExtResource("3_d7kkf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite"]
+modulate = Color(0.592157, 0.592157, 0.592157, 1)
+texture_filter = 1
+position = Vector2(0, 1.03427)
+scale = Vector2(0.282444, 0.282444)
+texture = ExtResource("3_m85sf")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-4.76837e-07, 7.62939e-06)
+scale = Vector2(-0.849114, -0.849114)
+color = Color(0.352941, 0.819608, 1, 1)
+texture = ExtResource("4_6886c")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_emqrd")
+}
+autoplay = "Idle"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

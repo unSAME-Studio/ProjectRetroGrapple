@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpb3ewucyxf6f"]
+
+[ext_resource type="Script" path="res://Scenes/hints.gd" id="1_xr55h"]
+[ext_resource type="FontFile" uid="uid://bowwhohu6ll6p" path="res://Art/font/DinaRemasterII.ttc" id="2_sh0rc"]
+
+[node name="hints" type="Area2D"]
+script = ExtResource("1_xr55h")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="CanvasLayer2"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer2/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 712.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer2/Control/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 1, 0.8, 1)
+theme_override_colors/font_shadow_color = Color(0.0117647, 0.0352941, 0.0196078, 1)
+theme_override_constants/shadow_offset_y = 10
+theme_override_fonts/font = ExtResource("2_sh0rc")
+theme_override_font_sizes/font_size = 136
+text = "Can you make it out"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

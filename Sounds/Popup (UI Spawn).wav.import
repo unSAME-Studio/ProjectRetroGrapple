@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d0rpnh15qvre3"
+path="res://.godot/imported/Popup (UI Spawn).wav-64d9d0585a44660926f5abde8cbc50b8.sample"
+
+[deps]
+
+source_file="res://Sounds/Popup (UI Spawn).wav"
+dest_files=["res://.godot/imported/Popup (UI Spawn).wav-64d9d0585a44660926f5abde8cbc50b8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

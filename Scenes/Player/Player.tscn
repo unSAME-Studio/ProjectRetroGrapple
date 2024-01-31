@@ -1,0 +1,231 @@
+[gd_scene load_steps=21 format=3 uid="uid://cvboky6pqlyk0"]
+
+[ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1"]
+[ext_resource type="Script" path="res://Scenes/Player/Sprite.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://b4aqcmo2kvu1b" path="res://Scenes/Player/chain.tscn" id="2_eo43v"]
+[ext_resource type="Texture2D" uid="uid://du8fvchndw3di" path="res://Art/sprites/OIG4 (1)-pixelicious.png" id="4_e0ew5"]
+[ext_resource type="Texture2D" uid="uid://cc8upshk3nah6" path="res://Art/light.png" id="5_4vfyt"]
+[ext_resource type="Script" path="res://Scenes/Player/Camera2D.gd" id="5_bs7kk"]
+[ext_resource type="AudioStream" uid="uid://cxyt3cf1yr2f4" path="res://Sounds/BouncyNoise.wav" id="6_8i83a"]
+[ext_resource type="AudioStream" uid="uid://0g1kjfsbh873" path="res://Sounds/MousetrapExplode.wav" id="8_2q8nq"]
+[ext_resource type="AudioStream" uid="uid://dlicaosgr320v" path="res://Sounds/ROBITZPunch.wav" id="8_4gng4"]
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(32, 24)
+
+[sub_resource type="SeparationRayShape2D" id="1"]
+length = 8.0
+
+[sub_resource type="Curve" id="Curve_m161m"]
+_data = [Vector2(0, 0.1225), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qwrve"]
+curve = SubResource("Curve_m161m")
+
+[sub_resource type="Curve" id="Curve_6sleu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.74), -0.947374, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_va3w6"]
+curve = SubResource("Curve_6sleu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xa2qt"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_min = 0.3
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_va3w6")
+alpha_curve = SubResource("CurveTexture_qwrve")
+
+[sub_resource type="Animation" id="3"]
+resource_name = "Jump"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1.68179, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="4"]
+resource_name = "Land"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(0.241484, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.4, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1lb64"]
+_data = {
+"Jump": SubResource("3"),
+"Land": SubResource("4")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fxpy3"]
+radius = 16.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+z_index = 10
+collision_mask = 18
+floor_stop_on_slope = false
+script = ExtResource("1")
+max_speed = 300.0
+acceleration = 1000.0
+gravity_acceleration = 1000.0
+jump_force = 500.0
+CHAIN_PULL = 30
+
+[node name="Chain" parent="." instance=ExtResource("2_eo43v")]
+
+[node name="SquareCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("2")
+disabled = true
+
+[node name="RaycastCollider1" type="CollisionShape2D" parent="."]
+position = Vector2(-16, 8)
+shape = SubResource("1")
+disabled = true
+
+[node name="RaycastCollider2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("1")
+disabled = true
+
+[node name="RaycastCollider3" type="CollisionShape2D" parent="."]
+position = Vector2(16, 8)
+shape = SubResource("1")
+disabled = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -2)
+process_material = SubResource("ParticleProcessMaterial_xa2qt")
+texture = ExtResource("4_e0ew5")
+
+[node name="Sprite" type="Node2D" parent="."]
+position = Vector2(0, 8)
+script = ExtResource("2")
+player_path = NodePath("..")
+
+[node name="Day2" type="Sprite2D" parent="Sprite"]
+self_modulate = Color(0.74902, 0.74902, 0.74902, 1)
+texture_filter = 1
+position = Vector2(0, -10)
+scale = Vector2(0.302999, 0.302999)
+texture = ExtResource("4_e0ew5")
+flip_h = true
+
+[node name="Polygon2D" type="Polygon2D" parent="Sprite"]
+visible = false
+position = Vector2(0, -8)
+color = Color(0.964706, 0.952941, 0.298039, 1)
+polygon = PackedVector2Array(-16, -16, -16, 16, 16, 16, 16, -16)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+libraries = {
+"": SubResource("AnimationLibrary_1lb64")
+}
+
+[node name="Line2D" type="Line2D" parent="Sprite"]
+visible = false
+points = PackedVector2Array(-7, -18, -11, -22, -11, -17, -12, -16, -13, -15, -14, -14, -15, -13, -15, -11, -15, -9, -14, -8, -13, -7, -11, -7, -9, -7, -6, -7, -5, -7, -4, -7, -1, -7, 2, -7, 4, -7, 7, -7, 9, -8, 11, -9, 12, -10, 13, -12, 13, -13, 12, -15, 11, -16, 10, -17, 9, -18, 7, -18, 6, -19, 4, -24, 1, -19, -3, -19, -6, -18)
+width = 1.0
+
+[node name="Line2D2" type="Line2D" parent="Sprite"]
+visible = false
+points = PackedVector2Array(-18, -11, -14, -12)
+width = 1.0
+
+[node name="Line2D3" type="Line2D" parent="Sprite"]
+visible = false
+points = PackedVector2Array(-18, -8, -13, -10)
+width = 1.0
+
+[node name="Line2D4" type="Line2D" parent="Sprite"]
+visible = false
+points = PackedVector2Array(15, -16, 11, -14)
+width = 1.0
+
+[node name="Line2D5" type="Line2D" parent="Sprite"]
+visible = false
+points = PackedVector2Array(15, -13, 11, -12)
+width = 1.0
+
+[node name="Line2D6" type="Line2D" parent="Sprite"]
+visible = false
+points = PackedVector2Array(-5, -7, -5, -5, -5, -1, -5, 1, -3, 3, 0, 3, 3, 2, 4, 0, 5, -2, 4, -5, 3, -7)
+width = 1.0
+
+[node name="Line2D7" type="Line2D" parent="Sprite"]
+visible = false
+points = PackedVector2Array(-2, 3, -1, 8, -4, 8, -4, 6, -1, 8)
+width = 1.0
+
+[node name="Line2D8" type="Line2D" parent="Sprite"]
+visible = false
+points = PackedVector2Array(1, 3, 2, 8, 4, 8, 5, 6, 3, 6, 2, 7)
+width = 1.0
+
+[node name="Line2D9" type="Line2D" parent="Sprite"]
+visible = false
+points = PackedVector2Array(-5, -6, -10, -2, -10, -1, -10, 0, -11, 0, -12, -1, -11, -2)
+width = 1.0
+
+[node name="Line2D10" type="Line2D" parent="Sprite"]
+visible = false
+points = PackedVector2Array(-4, -11, -4, -10, -3, -9, -2, -10, -2, -11, -1, -10, 0, -9, 1, -10, 1, -11)
+width = 1.0
+
+[node name="Line2D11" type="Line2D" parent="Sprite"]
+visible = false
+points = PackedVector2Array(-9, -14, -9, -12, -7, -12, -7, -14, -9, -14)
+width = 1.0
+
+[node name="Line2D12" type="Line2D" parent="Sprite"]
+visible = false
+points = PackedVector2Array(3, -15, 3, -13, 5, -13, 5, -15, 3, -15)
+width = 1.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+script = ExtResource("5_bs7kk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fxpy3")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.5
+texture = ExtResource("5_4vfyt")
+height = 20.0
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_8i83a")
+bus = &"Sounds"
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_2q8nq")
+bus = &"Sounds"
+
+[node name="Hook" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_4gng4")
+bus = &"Sounds"
