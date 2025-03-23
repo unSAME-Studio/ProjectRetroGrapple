@@ -1,11 +1,10 @@
-[gd_scene load_steps=46 format=3 uid="uid://cfg4sor4sotk6"]
+[gd_scene load_steps=45 format=3 uid="uid://cfg4sor4sotk6"]
 
-[ext_resource type="Script" path="res://World/World.gd" id="1"]
+[ext_resource type="Script" uid="uid://cm2iby3qp33mb" path="res://World/World.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://dxeva15lnv7wm" path="res://Scenes/Platforms/TileMap.tscn" id="2"]
-[ext_resource type="Texture2D" uid="uid://bkdq6oyla3nsc" path="res://Art/2D Level Design Guide.jpg" id="2_0tt0s"]
 [ext_resource type="PackedScene" uid="uid://bwkcutdoh0xwl" path="res://Scenes/checkpoint.tscn" id="3_d04tt"]
 [ext_resource type="PackedScene" uid="uid://cvboky6pqlyk0" path="res://Scenes/Player/Player.tscn" id="4"]
-[ext_resource type="Shader" path="res://Art/shaders/overlay.gdshader" id="4_4e8hy"]
+[ext_resource type="Shader" uid="uid://bxh8ucwj1last" path="res://Art/shaders/overlay.gdshader" id="4_4e8hy"]
 [ext_resource type="PackedScene" uid="uid://dyq8g35t6hsjf" path="res://Scenes/Platforms/MovingPlatform.tscn" id="5"]
 [ext_resource type="Texture2D" uid="uid://dbt1mxjnle3i1" path="res://Art/download.png" id="5_ndj8h"]
 [ext_resource type="PackedScene" uid="uid://cqindn5hr3fl7" path="res://Scenes/Platforms/CirclePlatform.tscn" id="6"]
@@ -15,16 +14,16 @@
 [ext_resource type="AudioStream" uid="uid://hp7w5f28n8vc" path="res://Sounds/electricity.wav" id="8_jh1h7"]
 [ext_resource type="PackedScene" uid="uid://bnggnc1406hqq" path="res://Art/transition/Transition.tscn" id="8_l6o7a"]
 [ext_resource type="Texture2D" uid="uid://dsusrgqvh53vp" path="res://Art/imgonline-com-ua-TextureSeamless-NEGyJqEnK9i6.png" id="9_mtf61"]
-[ext_resource type="Shader" path="res://Art/shaders/fog.gdshader" id="11_t4gax"]
+[ext_resource type="Shader" uid="uid://1g5xfsm7h4by" path="res://Art/shaders/fog.gdshader" id="11_t4gax"]
 [ext_resource type="Texture2D" uid="uid://cu6j6fcg41lbx" path="res://Art/cloudnoise_1.webp" id="12_7q4bc"]
 [ext_resource type="PackedScene" uid="uid://cpb3ewucyxf6f" path="res://Scenes/hints.tscn" id="12_8gvx8"]
 [ext_resource type="Texture2D" uid="uid://droij8p6l2ibo" path="res://Art/bridge.png" id="12_tjeky"]
-[ext_resource type="Shader" path="res://Art/shaders/colorpallet.gdshader" id="15_cybhw"]
-[ext_resource type="Shader" path="res://Art/shaders/CRT.gdshader" id="15_k6tmj"]
+[ext_resource type="Shader" uid="uid://bnrncuntos0p5" path="res://Art/shaders/colorpallet.gdshader" id="15_cybhw"]
+[ext_resource type="Shader" uid="uid://b10ar3xpn7kto" path="res://Art/shaders/CRT.gdshader" id="15_k6tmj"]
 [ext_resource type="Texture2D" uid="uid://cnvjk31ss4un" path="res://Art/color_pallets/ammo-8-1x.png" id="16_0o7al"]
 [ext_resource type="FontFile" uid="uid://bowwhohu6ll6p" path="res://Art/font/DinaRemasterII.ttc" id="18_i0jo8"]
 [ext_resource type="Texture2D" uid="uid://dks0jorpq6o82" path="res://Art/sprites/Star.png" id="24_2rjn2"]
-[ext_resource type="Shader" path="res://Art/shaders/MaskParticle2.gdshader" id="25_6inhv"]
+[ext_resource type="Shader" uid="uid://dcwyjql2kgais" path="res://Art/shaders/MaskParticle2.gdshader" id="25_6inhv"]
 [ext_resource type="Texture2D" uid="uid://fpnsbtmnwna7" path="res://Art/blurred.png" id="26_04qmw"]
 [ext_resource type="Texture2D" uid="uid://mt3exixu7cpj" path="res://Art/white.png" id="27_1phlk"]
 
@@ -36,11 +35,11 @@ radius = 144.222
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ku5xe"]
 shader = ExtResource("4_4e8hy")
+shader_parameter/tex = ExtResource("5_ndj8h")
 shader_parameter/tiling = 1.0
 shader_parameter/ratio = 1.0
 shader_parameter/tex_size = Vector2(256, 256)
 shader_parameter/overlay_color = Color(0.313726, 0.505882, 0.466667, 1)
-shader_parameter/tex = ExtResource("5_ndj8h")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_77co4"]
 radius = 296.0
@@ -59,9 +58,9 @@ blend_mode = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lyi18"]
 shader = ExtResource("11_t4gax")
+shader_parameter/noise_texture = ExtResource("12_7q4bc")
 shader_parameter/density = 0.382
 shader_parameter/speed = Vector2(0.02, 0.01)
-shader_parameter/noise_texture = ExtResource("12_7q4bc")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2vwsu"]
 shader = ExtResource("15_cybhw")
@@ -99,8 +98,8 @@ glow_enabled = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uclpu"]
 shader = ExtResource("25_6inhv")
-shader_parameter/alpha = 1.0
 shader_parameter/mask_texture2 = ExtResource("26_04qmw")
+shader_parameter/alpha = 1.0
 
 [sub_resource type="Curve" id="Curve_4mlut"]
 _data = [Vector2(0, 0), 0.0, 3.45328, 0, 0, Vector2(1, 0.65875), -1.7225, 0.0, 0, 0]
@@ -136,7 +135,6 @@ script = ExtResource("1")
 visible = false
 position = Vector2(-3265, 321)
 scale = Vector2(0.39421, 0.39421)
-texture = ExtResource("2_0tt0s")
 
 [node name="Checkpoints" type="Node2D" parent="."]
 
@@ -898,7 +896,7 @@ texture = ExtResource("24_2rjn2")
 material = SubResource("ShaderMaterial_uclpu")
 position = Vector2(-2.6226e-05, 3.25182)
 amount = 7
-process_material = SubResource("ParticleProcessMaterial_n28tr")
 texture = ExtResource("27_1phlk")
 lifetime = 5.0
 randomness = 0.41
+process_material = SubResource("ParticleProcessMaterial_n28tr")

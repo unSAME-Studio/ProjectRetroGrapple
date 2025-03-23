@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bojaaqxfulvhh"]
 
-[ext_resource type="Script" path="res://Scenes/coin_particle.gd" id="1_gexqx"]
+[ext_resource type="Script" uid="uid://cqmka6wgsujxo" path="res://Scenes/coin_particle.gd" id="1_gexqx"]
 [ext_resource type="Texture2D" uid="uid://fpnsbtmnwna7" path="res://Art/blurred.png" id="1_oxsre"]
 [ext_resource type="Texture2D" uid="uid://b8x3rv8tdlcbm" path="res://Art/sprites/Circle.png" id="2_jtpap"]
 [ext_resource type="AudioStream" uid="uid://baeeueohqm5p5" path="res://Sounds/PickupHealth.wav" id="4_jrkb1"]
@@ -88,8 +88,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cankh"]
 _data = {
-"RESET": SubResource("Animation_l8lpg"),
-"new_animation": SubResource("Animation_5hkfj")
+&"RESET": SubResource("Animation_l8lpg"),
+&"new_animation": SubResource("Animation_5hkfj")
 }
 
 [sub_resource type="Gradient" id="Gradient_bg0je"]
