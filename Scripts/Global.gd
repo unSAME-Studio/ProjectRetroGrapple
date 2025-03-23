@@ -1,15 +1,16 @@
 extends Node
 
 var gamepad_input = false
-var last_gamepad_input = Vector2.ZERO
+var last_gamepad_input : Vector2 = Vector2.ZERO
 var check_point
 var used_check_point = []
 
-var coins = 0
+var coins : int = 0
 var collected_coins = []
 
-var death_count = 0
-var player_time = 0
+var death_count : int = 0
+var player_time : float = 0.0
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouse:

@@ -31,6 +31,10 @@ window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/size/fullscreen=false
 
+[global_group]
+
+coins="collection of all coins"
+
 [input]
 
 ui_left={

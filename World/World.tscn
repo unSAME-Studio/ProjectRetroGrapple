@@ -840,16 +840,15 @@ layer = 2
 layer = 5
 
 [node name="Control" type="Control" parent="CanvasLayer2"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 840.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer2/Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -864,6 +863,17 @@ theme_override_fonts/font = ExtResource("18_i0jo8")
 theme_override_font_sizes/font_size = 281
 text = "Can JUMP"
 horizontal_alignment = 1
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer2/Control"]
+layout_mode = 1
+offset_left = 107.0
+offset_top = 69.0
+offset_right = 1125.0
+offset_bottom = 282.0
+theme_override_colors/font_color = Color(0.933333, 1, 0.8, 0.619608)
+theme_override_fonts/font = ExtResource("18_i0jo8")
+theme_override_font_sizes/font_size = 100
+text = "00:11:11"
 
 [node name="ColorRect2" type="ColorRect" parent="CanvasLayer2"]
 material = SubResource("ShaderMaterial_2vwsu")

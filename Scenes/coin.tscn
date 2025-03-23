@@ -179,7 +179,7 @@ _data = {
 &"RESET": SubResource("Animation_jgjtp")
 }
 
-[node name="Coin" type="Area2D"]
+[node name="Coin" type="Area2D" groups=["coins"]]
 collision_layer = 16
 script = ExtResource("1_midk6")
 

@@ -88,6 +88,11 @@ func get_input() -> Dictionary:
 	}
 
 
+func _process(delta: float) -> void:
+	# only add to time if player is alive
+	Global.player_time += delta
+
+
 func _physics_process(delta: float) -> void:
 	#x_movement(delta)
 	#set_direction(clamp(velocity.x, -1, 1)) # This is purely for visuals
@@ -251,6 +256,7 @@ func kill():
 	$AudioStreamPlayer2D2.play()
 	
 	set_physics_process(false)
+	set_process(false)
 	set_process_input(false)
 	
 	Global.death_count += 1
