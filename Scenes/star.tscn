@@ -1,0 +1,71 @@
+[gd_scene load_steps=14 format=3 uid="uid://bkl1nn3u6notx"]
+
+[ext_resource type="Texture2D" uid="uid://dks0jorpq6o82" path="res://Art/sprites/Star.png" id="1_1a88l"]
+[ext_resource type="Script" uid="uid://dnpb80v81cidt" path="res://Scenes/star.gd" id="1_wgp3r"]
+[ext_resource type="Shader" uid="uid://dcwyjql2kgais" path="res://Art/shaders/MaskParticle2.gdshader" id="2_wgp3r"]
+[ext_resource type="Texture2D" uid="uid://fpnsbtmnwna7" path="res://Art/blurred.png" id="3_417aj"]
+[ext_resource type="Texture2D" uid="uid://mt3exixu7cpj" path="res://Art/white.png" id="4_6c6wk"]
+[ext_resource type="Texture2D" uid="uid://cc8upshk3nah6" path="res://Art/light.png" id="6_417aj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_quovc"]
+shader = ExtResource("2_wgp3r")
+shader_parameter/mask_texture2 = ExtResource("3_417aj")
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Curve" id="Curve_wl3pd"]
+_data = [Vector2(0, 0), 0.0, 3.45328, 0, 0, Vector2(1, 0.65875), -1.7225, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_k0uow"]
+curve = SubResource("Curve_wl3pd")
+
+[sub_resource type="Curve" id="Curve_h4mvj"]
+_data = [Vector2(0.00314465, 0.553125), 0.0, 3.66031, 0, 0, Vector2(0.286164, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.60437, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_a7o3t"]
+curve = SubResource("Curve_h4mvj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8m5tp"]
+lifetime_randomness = 0.83
+particle_flag_disable_z = true
+angle_min = -316.3
+angle_max = 316.3
+angular_velocity_min = -133.18
+angular_velocity_max = 141.5
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_a7o3t")
+alpha_curve = SubResource("CurveTexture_k0uow")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7qm1h"]
+radius = 87.0057
+
+[node name="star" type="Area2D"]
+script = ExtResource("1_wgp3r")
+
+[node name="Star" type="Sprite2D" parent="."]
+scale = Vector2(1.23007, 1.23007)
+texture = ExtResource("1_1a88l")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Star"]
+material = SubResource("ShaderMaterial_quovc")
+position = Vector2(0, 3.25183)
+scale = Vector2(1, 1)
+amount = 7
+texture = ExtResource("4_6c6wk")
+lifetime = 5.0
+randomness = 0.41
+process_material = SubResource("ParticleProcessMaterial_8m5tp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7qm1h")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-4.76837e-07, 7.62939e-06)
+scale = Vector2(-0.849114, -0.849114)
+color = Color(0.352941, 0.819608, 1, 1)
+texture = ExtResource("6_417aj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

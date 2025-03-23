@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cpb3ewucyxf6f"]
 
-[ext_resource type="Script" path="res://Scenes/hints.gd" id="1_xr55h"]
+[ext_resource type="Script" uid="uid://qr6itb6bpsx5" path="res://Scenes/hints.gd" id="1_xr55h"]
 [ext_resource type="FontFile" uid="uid://bowwhohu6ll6p" path="res://Art/font/DinaRemasterII.ttc" id="2_sh0rc"]
 
 [node name="hints" type="Area2D"]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=28 format=3 uid="uid://bwkcutdoh0xwl"]
 
-[ext_resource type="Script" path="res://Scenes/checkpoint.gd" id="1_hiy14"]
+[ext_resource type="Script" uid="uid://inf8bumo7al3" path="res://Scenes/checkpoint.gd" id="1_hiy14"]
 [ext_resource type="Texture2D" uid="uid://c4oje21pysq4y" path="res://Art/sprites/pxArt.png" id="2_qih21"]
 [ext_resource type="Texture2D" uid="uid://cc8upshk3nah6" path="res://Art/light.png" id="3_jat21"]
 [ext_resource type="Texture2D" uid="uid://bxfk7ayy2sggv" path="res://Art/link.png" id="4_21lmw"]
-[ext_resource type="Shader" path="res://Art/shaders/MaskParticle2.gdshader" id="4_j6l0x"]
+[ext_resource type="Shader" uid="uid://dcwyjql2kgais" path="res://Art/shaders/MaskParticle2.gdshader" id="4_j6l0x"]
 [ext_resource type="Texture2D" uid="uid://b6unvwq3rqq1t" path="res://Art/spotlight_5.png" id="5_11cx1"]
 [ext_resource type="Texture2D" uid="uid://mt3exixu7cpj" path="res://Art/white.png" id="6_e3nem"]
 [ext_resource type="Texture2D" uid="uid://fpnsbtmnwna7" path="res://Art/blurred.png" id="7_edjh1"]
@@ -169,15 +169,15 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0tsmi"]
 _data = {
-"RESET": SubResource("Animation_xtwa7"),
-"complete": SubResource("Animation_1xo0o"),
-"up": SubResource("Animation_wbwac")
+&"RESET": SubResource("Animation_xtwa7"),
+&"complete": SubResource("Animation_1xo0o"),
+&"up": SubResource("Animation_wbwac")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nvm18"]
 shader = ExtResource("4_j6l0x")
-shader_parameter/alpha = 1.0
 shader_parameter/mask_texture2 = ExtResource("5_11cx1")
+shader_parameter/alpha = 1.0
 
 [sub_resource type="Curve" id="Curve_4ydti"]
 _data = [Vector2(0, 0), 0.0, 3.88556, 0, 0, Vector2(1, 0), -1.37883, 0.0, 0, 0]
@@ -206,8 +206,8 @@ alpha_curve = SubResource("CurveTexture_e34jb")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4qe7t"]
 shader = ExtResource("4_j6l0x")
-shader_parameter/alpha = 1.0
 shader_parameter/mask_texture2 = ExtResource("7_edjh1")
+shader_parameter/alpha = 1.0
 
 [sub_resource type="Curve" id="Curve_hfjay"]
 _data = [Vector2(0, 0), 0.0, 3.45328, 0, 0, Vector2(1, 0.65875), -1.7225, 0.0, 0, 0]

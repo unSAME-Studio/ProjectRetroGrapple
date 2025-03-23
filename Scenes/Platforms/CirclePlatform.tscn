@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cqindn5hr3fl7"]
 
 [ext_resource type="Texture2D" uid="uid://b8x3rv8tdlcbm" path="res://Art/sprites/Circle.png" id="1"]
-[ext_resource type="Script" path="res://Scenes/Platforms/CirclePlatform.gd" id="2"]
-[ext_resource type="Shader" path="res://Art/shaders/overlay.gdshader" id="2_ldno3"]
+[ext_resource type="Script" uid="uid://dg1ucxilnixvl" path="res://Scenes/Platforms/CirclePlatform.gd" id="2"]
+[ext_resource type="Shader" uid="uid://bxh8ucwj1last" path="res://Art/shaders/overlay.gdshader" id="2_ldno3"]
 [ext_resource type="Texture2D" uid="uid://dbt1mxjnle3i1" path="res://Art/download.png" id="3_52hqo"]
 
 [sub_resource type="CircleShape2D" id="1"]
@@ -10,11 +10,11 @@ radius = 128.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0qtir"]
 shader = ExtResource("2_ldno3")
+shader_parameter/tex = ExtResource("3_52hqo")
 shader_parameter/tiling = 1.0
 shader_parameter/ratio = 1.0
 shader_parameter/tex_size = Vector2(256, 256)
 shader_parameter/overlay_color = Color(0.313726, 0.505882, 0.466667, 1)
-shader_parameter/tex = ExtResource("3_52hqo")
 
 [node name="CirclePlatform" type="CharacterBody2D"]
 rotation = 59.5838

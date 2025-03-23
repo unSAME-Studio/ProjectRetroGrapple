@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cun0had8d8yw"]
 
-[ext_resource type="Script" path="res://Scenes/spike.gd" id="1_3npw6"]
-[ext_resource type="Shader" path="res://Art/shaders/spike.gdshader" id="2_ekit6"]
+[ext_resource type="Script" uid="uid://da0856hmjgfsw" path="res://Scenes/spike.gd" id="1_3npw6"]
+[ext_resource type="Shader" uid="uid://dbktlxhgfcdnm" path="res://Art/shaders/spike.gdshader" id="2_ekit6"]
 [ext_resource type="Texture2D" uid="uid://7jtnhovfff4p" path="res://Art/sprites/spike.png" id="2_h35x7"]
 [ext_resource type="Texture2D" uid="uid://cpbubqas2xq5v" path="res://Art/sprites/Beam.png" id="3_l4lwa"]
 [ext_resource type="Texture2D" uid="uid://cc8upshk3nah6" path="res://Art/light.png" id="4_1goio"]

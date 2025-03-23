@@ -1,11 +1,11 @@
 [gd_scene load_steps=21 format=3 uid="uid://cvboky6pqlyk0"]
 
-[ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1"]
-[ext_resource type="Script" path="res://Scenes/Player/Sprite.gd" id="2"]
+[ext_resource type="Script" uid="uid://dkfcas76eefex" path="res://Scenes/Player/Player.gd" id="1"]
+[ext_resource type="Script" uid="uid://by2kwyayk4hgc" path="res://Scenes/Player/Sprite.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://b4aqcmo2kvu1b" path="res://Scenes/Player/chain.tscn" id="2_eo43v"]
 [ext_resource type="Texture2D" uid="uid://du8fvchndw3di" path="res://Art/sprites/OIG4 (1)-pixelicious.png" id="4_e0ew5"]
 [ext_resource type="Texture2D" uid="uid://cc8upshk3nah6" path="res://Art/light.png" id="5_4vfyt"]
-[ext_resource type="Script" path="res://Scenes/Player/Camera2D.gd" id="5_bs7kk"]
+[ext_resource type="Script" uid="uid://fgniricsgiip" path="res://Scenes/Player/Camera2D.gd" id="5_bs7kk"]
 [ext_resource type="AudioStream" uid="uid://cxyt3cf1yr2f4" path="res://Sounds/BouncyNoise.wav" id="6_8i83a"]
 [ext_resource type="AudioStream" uid="uid://0g1kjfsbh873" path="res://Sounds/MousetrapExplode.wav" id="8_2q8nq"]
 [ext_resource type="AudioStream" uid="uid://dlicaosgr320v" path="res://Sounds/ROBITZPunch.wav" id="8_4gng4"]
@@ -73,8 +73,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1lb64"]
 _data = {
-"Jump": SubResource("3"),
-"Land": SubResource("4")
+&"Jump": SubResource("3"),
+&"Land": SubResource("4")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fxpy3"]
