@@ -52,7 +52,6 @@ texture = ExtResource("1_1a88l")
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="Star"]
 material = SubResource("ShaderMaterial_quovc")
 position = Vector2(0, 3.25183)
-scale = Vector2(1, 1)
 amount = 7
 texture = ExtResource("4_6c6wk")
 lifetime = 5.0

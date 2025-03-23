@@ -115,8 +115,8 @@ disabled = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(0, -2)
-process_material = SubResource("ParticleProcessMaterial_xa2qt")
 texture = ExtResource("4_e0ew5")
+process_material = SubResource("ParticleProcessMaterial_xa2qt")
 
 [node name="Sprite" type="Node2D" parent="."]
 position = Vector2(0, 8)
@@ -139,7 +139,7 @@ polygon = PackedVector2Array(-16, -16, -16, 16, 16, 16, 16, -16)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 libraries = {
-"": SubResource("AnimationLibrary_1lb64")
+&"": SubResource("AnimationLibrary_1lb64")
 }
 
 [node name="Line2D" type="Line2D" parent="Sprite"]

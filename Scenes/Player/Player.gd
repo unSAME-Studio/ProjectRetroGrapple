@@ -7,6 +7,7 @@ extends CharacterBody2D
 ## https://www.youtube.com/watch?v=2S3g8CgBG1g
 ## Except for separate air and ground acceleration, as I don't think it's necessary.
 
+class_name Player_Controller
 
 # BASIC MOVEMENT VARAIABLES ---------------- #
 var face_direction := 1
@@ -42,8 +43,14 @@ var is_jumping := false
 # ----------------------------------- #
 
 var coins = 0
+var collected_coins = []
 var particle = preload("res://Scenes/coin_particle.tscn")
 var transition = preload("res://Art/transition/Transition.tscn")
+
+
+func _ready() -> void:
+	Global.load_game(self)
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -59,8 +66,12 @@ func _input(event: InputEvent) -> void:
 		kill()
 		#get_tree().reload_current_scene()
 	
+	if Input.is_action_just_pressed("restart"):
+		Global.reset_game()
+		get_tree().reload_current_scene()
+	
 	if Input.is_action_just_pressed("hook"):
-		$Chain.shoot(Vector2(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X), Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)))
+		$Chain.shoot(Global.last_gamepad_input)
 		$Hook.play()
 	elif Input.is_action_just_released("hook"):
 		$Chain.release()
@@ -241,6 +252,8 @@ func kill():
 	
 	set_physics_process(false)
 	set_process_input(false)
+	
+	Global.death_count += 1
 	
 	await get_tree().create_timer(0.5).timeout
 	

@@ -48,7 +48,13 @@ func _process(delta: float) -> void:
 	
 func _physics_process(delta: float) -> void:
 	# update the raycast
-	var dir = (get_global_mouse_position() - get_global_position()).normalized()
+	# switch between using mouse or gamepad
+	var dir: Vector2
+	if Global.gamepad_input:
+		dir = Global.last_gamepad_input
+	else:
+		dir = (get_global_mouse_position() - get_global_position()).normalized()
+	
 	$RayCast2D.set_target_position(dir * MAX_DISTANCE)
 	
 	if $RayCast2D.is_colliding():
