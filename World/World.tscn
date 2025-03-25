@@ -746,7 +746,7 @@ text = "never trust anyone"
 shape = SubResource("CircleShape2D_i82oh")
 
 [node name="hints9" parent="Hints" instance=ExtResource("12_8gvx8")]
-position = Vector2(-1264, 328)
+position = Vector2(-612, -324)
 text = "you have completed the test"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hints/hints9"]

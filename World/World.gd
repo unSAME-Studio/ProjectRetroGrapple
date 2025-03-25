@@ -53,7 +53,7 @@ func swap_fullscreen_mode():
 func game_over():
 	var time_string = convert_time_to_string(Global.player_time)
 	
-	$CanvasLayer2/Control/CenterContainer/VBoxContainer/FinalScore.set_text("TIME: %s\nDEATH: %d\n\nPRESS [%s] TO CONTINUE" % [time_string, Global.death_count, "A" if Global.gamepad_input else "SPACE"])
+	$CanvasLayer2/Control/CenterContainer/VBoxContainer/FinalScore.set_text("TIME: %s\nDEATH: %d\nCOINS: %d/%d\n\nPRESS [%s] TO CONTINUE" % [time_string, Global.death_count, Global.coins, Global.total_coins, "A" if Global.gamepad_input else "SPACE"])
 	
 	$CanvasLayer2/Control/TimerLabel.hide()
 	$CanvasLayer2/Control/CenterContainer/VBoxContainer.show()
@@ -77,6 +77,7 @@ func _ready() -> void:
 	update_time()
 	
 	Global.world = self
+	Global.total_coins = get_tree().get_nodes_in_group("coins").size()
 	
 	MusicPlayer.play_music()
 	MusicPlayer.fade_in()
