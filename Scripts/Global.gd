@@ -1,5 +1,11 @@
 extends Node
 
+signal on_input_switched(is_gamepad)
+
+var world
+
+var game_over = false
+
 var gamepad_input = false
 var last_gamepad_input : Vector2 = Vector2.ZERO
 var check_point
@@ -13,19 +19,31 @@ var player_time : float = 0.0
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouse:
-		print("Using Keyboard Mouse Input")
-		gamepad_input = false
-	elif event is InputEventJoypadButton:
-		print("Using Gamepad Input")
-		gamepad_input = true
-	elif Input.get_vector("move_left", "move_right", "move_up", "move_down") != Vector2.ZERO:
-		print("Using Gamepad Joystick Input")
-		gamepad_input = true
-		last_gamepad_input = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
+	if gamepad_input:
+		# update the last input here again
+		if Input.get_vector("move_left", "move_right", "move_up", "move_down") != Vector2.ZERO:
+			last_gamepad_input = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
+		
+		if event is InputEventMouse:
+			print("Using Keyboard Mouse Input")
+			gamepad_input = false
+			
+			emit_signal("on_input_switched", false)
+	else:
+		if event is InputEventJoypadButton:
+			print("Using Gamepad Input")
+			gamepad_input = true
+			emit_signal("on_input_switched", true)
+		
+		elif Input.get_vector("move_left", "move_right", "move_up", "move_down") != Vector2.ZERO:
+			print("Using Gamepad Joystick Input")
+			gamepad_input = true
+			emit_signal("on_input_switched", true)
 
 
 func reset_game():
+	game_over = false
+	
 	check_point = null
 	used_check_point = []
 
@@ -34,7 +52,7 @@ func reset_game():
 	
 	death_count = 0
 	player_time = 0
-	
+
 
 func save_game(player: Player_Controller):
 	coins = player.coins

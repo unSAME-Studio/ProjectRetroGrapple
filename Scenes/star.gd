@@ -8,4 +8,12 @@ func _on_body_entered(body):
 		get_parent().add_child(p)
 		p.set_global_position(get_global_position())
 		
+		# disable time count too
+		body.set_process(false)
+		body.set_process_input(false)
+		
+		# call global game over
+		Global.game_over = true
+		Global.world.game_over()
+		
 		queue_free()

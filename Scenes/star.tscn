@@ -43,6 +43,7 @@ alpha_curve = SubResource("CurveTexture_k0uow")
 radius = 87.0057
 
 [node name="star" type="Area2D"]
+collision_layer = 16
 script = ExtResource("1_wgp3r")
 
 [node name="Star" type="Sprite2D" parent="."]

@@ -24,8 +24,8 @@ func _ready():
 	#a.connect("finished", self, "_on_finished")
 	add_child(a, true)
 	
-	play_music()
-	fade_in()
+	#play_music()
+	#fade_in()
 
 
 func _on_finished():

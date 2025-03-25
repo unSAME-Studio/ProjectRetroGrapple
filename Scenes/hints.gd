@@ -1,10 +1,24 @@
 extends Area2D
 
 @export var text = ""
+@export var gamepad_text = ""
+
+
+func find_matching_text(is_gamepad):
+	if is_gamepad and gamepad_text != "":
+		return gamepad_text
+	else:
+		return text
+
+
+func update_text(is_gamepad):
+	$CanvasLayer2/Control/CenterContainer/Label.set_text(find_matching_text(is_gamepad))
 
 
 func _ready():
-	$CanvasLayer2/Control/CenterContainer/Label.set_text(text)
+	update_text(Global.gamepad_input)
+	
+	Global.connect("on_input_switched", update_text)
 
 
 func _on_body_entered(body):

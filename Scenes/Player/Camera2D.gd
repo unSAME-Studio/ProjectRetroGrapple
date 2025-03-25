@@ -7,6 +7,9 @@ extends Camera2D
 const DEAD_ZONE = 160
 
 func _input(event: InputEvent) -> void:
+	if Global.game_over:
+		return
+	
 	if event is InputEventMouseMotion: # If the mouse moved...
 		var _target = event.position - get_viewport().size * 0.5	# Get the mouse position relative to the middle of the screen
 		if _target.length() < DEAD_ZONE:	# If we're in the middle (dead zone)...

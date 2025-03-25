@@ -78,7 +78,7 @@ color = Color(0, 0, 0, 1)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
 callback_mode_method = 1
 libraries = {
-"": SubResource("AnimationLibrary_0v7ya")
+&"": SubResource("AnimationLibrary_0v7ya")
 }
 
 [connection signal="animation_finished" from="ColorRect/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

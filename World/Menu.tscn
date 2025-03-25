@@ -1,0 +1,254 @@
+[gd_scene load_steps=13 format=3 uid="uid://wyvlehd4jdtc"]
+
+[ext_resource type="Script" uid="uid://cxcvvfql7uq1s" path="res://World/menu.gd" id="1_f53av"]
+[ext_resource type="FontFile" uid="uid://bowwhohu6ll6p" path="res://Art/font/DinaRemasterII.ttc" id="2_cy5cl"]
+[ext_resource type="Shader" uid="uid://bnrncuntos0p5" path="res://Art/shaders/colorpallet.gdshader" id="3_f53av"]
+[ext_resource type="Texture2D" uid="uid://cnvjk31ss4un" path="res://Art/color_pallets/ammo-8-1x.png" id="4_ogwps"]
+[ext_resource type="Shader" uid="uid://b10ar3xpn7kto" path="res://Art/shaders/CRT.gdshader" id="5_cy5cl"]
+[ext_resource type="AudioStream" uid="uid://tbr0es2s4406" path="res://Sounds/pcstartup.ogg" id="6_f53av"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8eqc8"]
+shader = ExtResource("3_f53av")
+shader_parameter/flip = false
+shader_parameter/gradient = ExtResource("4_ogwps")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f53av"]
+shader = ExtResource("5_cy5cl")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.012
+shader_parameter/scanlines_width = 0.019
+shader_parameter/grille_opacity = 0.017
+shader_parameter/resolution = Vector2(1920, 1080)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 2.0
+shader_parameter/roll_size = 24.828
+shader_parameter/roll_variation = 0.214
+shader_parameter/distort_intensity = 0.002
+shader_parameter/noise_opacity = 0.065
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.048
+shader_parameter/aberration = 0.00700005
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.624
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.255
+shader_parameter/vignette_opacity = 0.57
+shader_parameter/flip = false
+shader_parameter/gradient = ExtResource("4_ogwps")
+
+[sub_resource type="Environment" id="Environment_ogwps"]
+glow_enabled = true
+
+[sub_resource type="Animation" id="Animation_cy5cl"]
+resource_name = "intro"
+length = 3.53
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer2/Control/VBoxContainer/PCText:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.433333, 0.833333, 0.9, 1.26667, 1.33727, 1.6, 1.66667, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.563, 0.563, 0.749, 0.749, 0.821, 0.821, 0.926458, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer2/Control/VBoxContainer/Hint:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 3.1, 3.53333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer2/Control/VBoxContainer/Hint2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.3392, 3.43333, 3.53333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_f53av"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer2/Control/VBoxContainer/PCText:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer2/Control/VBoxContainer/Hint:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer2/Control/VBoxContainer/Hint2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f53av"]
+_data = {
+&"RESET": SubResource("Animation_f53av"),
+&"intro": SubResource("Animation_cy5cl")
+}
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_f53av")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Control" type="Control" parent="CanvasLayer2"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Darker" type="ColorRect" parent="CanvasLayer2/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer2/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer2/Control/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 1, 0.8, 0.619608)
+theme_override_fonts/font = ExtResource("2_cy5cl")
+theme_override_font_sizes/font_size = 281
+text = "Can JUMP"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/Control"]
+layout_mode = 0
+offset_left = 177.0
+offset_top = 48.0
+offset_right = 1455.0
+offset_bottom = 998.0
+
+[node name="PCText" type="Label" parent="CanvasLayer2/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 1, 0.8, 0.619608)
+theme_override_fonts/font = ExtResource("2_cy5cl")
+theme_override_font_sizes/font_size = 30
+text = "   @@@@@@@@@        
+ @@@@@@@@@@@@       
+@@@@@     @@@@@     
+@@@@        @@@@@@  
+@@@@        @@@@@@@ 
+@@@@       @@@@@@@@@
+@@@@@@@@@@@@      @@
+@@@@@@@@@        @ @
+@@@@@@@@     @@  @@ 
+ @@@@@@@@    @@         unSAME 
+   @@@@@@@                 studio
+     @@@@@@@@       
+
+unSAME Modular BIOS v3.12CPA Originator
+Copyright (c) 2024-25, unSAME studio, Software.
+
+Limbless Grapple Test, Version 3.33
+
+POWERLITE OP-MAX CPU at 400MHz
+LOADING TEST CASES..................................OK
+"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Hint" type="Label" parent="CanvasLayer2/Control/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 1, 0.8, 0.619608)
+theme_override_fonts/font = ExtResource("2_cy5cl")
+theme_override_font_sizes/font_size = 75
+text = "[F4] to toggle FULLSCREEN MODE
+"
+
+[node name="Hint2" type="Label" parent="CanvasLayer2/Control/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 1, 0.8, 0.619608)
+theme_override_fonts/font = ExtResource("2_cy5cl")
+theme_override_font_sizes/font_size = 75
+text = "Press [SPACE] to START TEST"
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer2"]
+material = SubResource("ShaderMaterial_8eqc8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer3"]
+material = SubResource("ShaderMaterial_f53av")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ogwps")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_f53av")
+}
+autoplay = "intro"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_f53av")
+autoplay = true
+bus = &"Sounds"

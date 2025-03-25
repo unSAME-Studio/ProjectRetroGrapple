@@ -6,6 +6,7 @@ signal blackout
 
 var reversed = true
 
+var target = null
 
 func _ready():
 	match (reversed):
@@ -19,6 +20,11 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	match(anim_name):
 		"FadeIn":
 			emit_signal("blackout")
-			get_tree().reload_current_scene()
+			if target != null:
+				Global.reset_game()
+				get_tree().change_scene_to_file(target)
+				
+			else:
+				get_tree().reload_current_scene()
 		"FadeOut":
 			queue_free()

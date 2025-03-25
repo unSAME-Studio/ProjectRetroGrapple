@@ -11,10 +11,12 @@ config_version=5
 [application]
 
 config/name="Retro Grapple Game"
-config/description="Retro Grapple Game"
-run/main_scene="res://World/World.tscn"
+config/description="(c) 2024-25 unSAME studio"
+config/version="1.0"
+run/main_scene="uid://wyvlehd4jdtc"
 config/features=PackedStringArray("4.4")
-config/icon="res://Art/sprites/OIG4 (1)-pixelicious.png"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+config/icon="uid://du8fvchndw3di"
 config/windows_native_icon="res://icon.ico"
 
 [autoload]
@@ -29,6 +31,7 @@ window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+mouse_cursor/custom_image="uid://dfwh3bhincmgc"
 window/size/fullscreen=false
 
 [global_group]

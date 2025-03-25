@@ -33,6 +33,9 @@ func release() -> void:
 
 # Every graphics frame we update the visuals
 func _process(delta: float) -> void:
+	if Global.game_over:
+		return
+	
 	#self.visible = flying or hooked	# Only visible if flying or attached to something
 	if not self.visible:
 		return	# Not visible -> nothing to draw

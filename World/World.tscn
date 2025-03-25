@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cfg4sor4sotk6"]
+[gd_scene load_steps=36 format=3 uid="uid://cfg4sor4sotk6"]
 
 [ext_resource type="Script" uid="uid://cm2iby3qp33mb" path="res://World/World.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://dxeva15lnv7wm" path="res://Scenes/Platforms/TileMap.tscn" id="2"]
@@ -22,10 +22,7 @@
 [ext_resource type="Shader" uid="uid://b10ar3xpn7kto" path="res://Art/shaders/CRT.gdshader" id="15_k6tmj"]
 [ext_resource type="Texture2D" uid="uid://cnvjk31ss4un" path="res://Art/color_pallets/ammo-8-1x.png" id="16_0o7al"]
 [ext_resource type="FontFile" uid="uid://bowwhohu6ll6p" path="res://Art/font/DinaRemasterII.ttc" id="18_i0jo8"]
-[ext_resource type="Texture2D" uid="uid://dks0jorpq6o82" path="res://Art/sprites/Star.png" id="24_2rjn2"]
-[ext_resource type="Shader" uid="uid://dcwyjql2kgais" path="res://Art/shaders/MaskParticle2.gdshader" id="25_6inhv"]
-[ext_resource type="Texture2D" uid="uid://fpnsbtmnwna7" path="res://Art/blurred.png" id="26_04qmw"]
-[ext_resource type="Texture2D" uid="uid://mt3exixu7cpj" path="res://Art/white.png" id="27_1phlk"]
+[ext_resource type="PackedScene" uid="uid://bkl1nn3u6notx" path="res://Scenes/star.tscn" id="23_c4j8x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7gmmp"]
 size = Vector2(58, 154)
@@ -95,38 +92,6 @@ shader_parameter/gradient = ExtResource("16_0o7al")
 
 [sub_resource type="Environment" id="Environment_sro2e"]
 glow_enabled = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uclpu"]
-shader = ExtResource("25_6inhv")
-shader_parameter/mask_texture2 = ExtResource("26_04qmw")
-shader_parameter/alpha = 1.0
-
-[sub_resource type="Curve" id="Curve_4mlut"]
-_data = [Vector2(0, 0), 0.0, 3.45328, 0, 0, Vector2(1, 0.65875), -1.7225, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_k0uow"]
-curve = SubResource("Curve_4mlut")
-
-[sub_resource type="Curve" id="Curve_3plp7"]
-_data = [Vector2(0.00314465, 0.553125), 0.0, 3.66031, 0, 0, Vector2(0.286164, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.60437, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_a7o3t"]
-curve = SubResource("Curve_3plp7")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n28tr"]
-lifetime_randomness = 0.83
-particle_flag_disable_z = true
-angle_min = -316.3
-angle_max = 316.3
-angular_velocity_min = -133.18
-angular_velocity_max = 141.5
-gravity = Vector3(0, 0, 0)
-scale_min = 5.0
-scale_max = 10.0
-scale_curve = SubResource("CurveTexture_a7o3t")
-alpha_curve = SubResource("CurveTexture_k0uow")
 
 [node name="World" type="Node2D"]
 script = ExtResource("1")
@@ -746,6 +711,7 @@ position = Vector2(-1500, 458)
 [node name="hints" parent="Hints" instance=ExtResource("12_8gvx8")]
 position = Vector2(-5280, 416)
 text = "[LEFT CLICK] to GRAPPLE"
+gamepad_text = "[R TRIGGER] to GRAPPLE"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hints/hints"]
 shape = SubResource("CircleShape2D_77co4")
@@ -753,6 +719,7 @@ shape = SubResource("CircleShape2D_77co4")
 [node name="hints11" parent="Hints" instance=ExtResource("12_8gvx8")]
 position = Vector2(-4560, 456)
 text = "[SPACE] to JUMP"
+gamepad_text = "[A] to JUMP"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hints/hints11"]
 shape = SubResource("CircleShape2D_i82oh")
@@ -847,8 +814,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer2/Control"]
+[node name="Darker" type="ColorRect" parent="CanvasLayer2/Control"]
 visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer2/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -857,11 +833,35 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer2/Control/CenterContainer"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.933333, 1, 0.8, 0.619608)
 theme_override_fonts/font = ExtResource("18_i0jo8")
 theme_override_font_sizes/font_size = 281
 text = "Can JUMP"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/Control/CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CanvasLayer2/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 1, 0.8, 0.619608)
+theme_override_fonts/font = ExtResource("18_i0jo8")
+theme_override_font_sizes/font_size = 216
+text = "TEST COMPLETED"
+horizontal_alignment = 1
+
+[node name="FinalScore" type="Label" parent="CanvasLayer2/Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 1, 0.8, 0.619608)
+theme_override_fonts/font = ExtResource("18_i0jo8")
+theme_override_font_sizes/font_size = 100
+text = "TIME: 00:11:11
+DEATH: 112
+
+PRESS [SPACE] TO CONTINUE"
 horizontal_alignment = 1
 
 [node name="TimerLabel" type="Label" parent="CanvasLayer2/Control"]
@@ -897,16 +897,6 @@ grow_vertical = 2
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sro2e")
 
-[node name="Star" type="Sprite2D" parent="."]
-position = Vector2(-1264, 346)
+[node name="star" parent="." instance=ExtResource("23_c4j8x")]
+position = Vector2(-1264, 376)
 scale = Vector2(1.23007, 1.23007)
-texture = ExtResource("24_2rjn2")
-
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="Star"]
-material = SubResource("ShaderMaterial_uclpu")
-position = Vector2(-2.6226e-05, 3.25182)
-amount = 7
-texture = ExtResource("27_1phlk")
-lifetime = 5.0
-randomness = 0.41
-process_material = SubResource("ParticleProcessMaterial_n28tr")
