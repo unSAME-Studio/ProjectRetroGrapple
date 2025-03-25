@@ -161,7 +161,10 @@ func jump_logic(_delta: float) -> void:
 	# Jump if grounded, there is jump input, and we aren't jumping already
 	if jump_coyote_timer > 0 and jump_buffer_timer > 0 and not is_jumping:
 		is_jumping = true
+		
 		$Jump.play()
+		Input.start_joy_vibration(0, 0.2, 0.7, 0.4)
+		
 		jump_coyote_timer = 0
 		jump_buffer_timer = 0
 		# If falling, account for that lost speed

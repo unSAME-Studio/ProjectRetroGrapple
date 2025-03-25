@@ -1,5 +1,6 @@
 extends Node2D
 
+var can_start = true
 var transition = preload("res://Art/transition/Transition.tscn")
 
 func _ready() -> void:
@@ -18,10 +19,13 @@ func _input(_event: InputEvent) -> void:
 		swap_fullscreen_mode()
 	
 	if Input.is_action_just_pressed("jump"):
-		var t = transition.instantiate()
-		t.target = "res://World/World.tscn"
-		t.reversed = false
-		get_tree().get_current_scene().add_child(t)
+		if can_start:
+			can_start = false
+			
+			var t = transition.instantiate()
+			t.target = "res://World/World.tscn"
+			t.reversed = false
+			get_tree().get_current_scene().add_child(t)
 
 
 func swap_fullscreen_mode():
