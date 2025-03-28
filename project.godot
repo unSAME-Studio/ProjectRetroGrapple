@@ -31,7 +31,6 @@ window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
-mouse_cursor/custom_image="uid://dfwh3bhincmgc"
 window/size/fullscreen=false
 
 [global_group]
